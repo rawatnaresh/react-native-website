@@ -589,22 +589,21 @@ The `Promise` will reject on Android if it was impossible to check if the URL ca
 > For other scenarios, like opening a specific third party application directly from your UI, you will have to explicitly [declare application package names](https://developer.android.com/training/package-visibility/declaring) or [intent filter signatures](https://developer.android.com/training/package-visibility/declaring#intent-filter-signature) like this
 >
 > ```
-> <manifest package="com.example.game">
+> <manifest>
 >  <queries>
->    <!-- Specific apps you interact with, eg: -->
->    <package android:name="com.example.store" />
->    <package android:name="com.example.service" />
->    <!--
->         Specific intents you query for,
->         eg: for a custom share UI
->    -->
+>    <package android:name="com.spotify.music" />
 >    <intent>
->      <action android:name="android.intent.action.SEND" />
->      <data android:mimeType="image/jpeg" />
+>      <action android:name="android.intent.action.VIEW" />
+>      <data android:scheme="spotify"/>
 >    </intent>
 >  </queries>
->  ...
 > </manifest>
+> ```
+>
+> And to open the app
+>
+> ```js
+> await Linking.openURL('spotify://');
 > ```
 
 ---

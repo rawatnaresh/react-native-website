@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 ```
+Here, we import the **codegen-generated header** for the spec; codegen creates it under
+`ios/build/generated/ios/<codegenConfig.name>/<codegenConfig.name>.h`.
 
 Then update our implementation to use `NSUserDefaults` with a custom [suite name](https://developer.apple.com/documentation/foundation/nsuserdefaults/1409957-initwithsuitename).
 
@@ -120,6 +122,8 @@ static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 Important things to note:
 
 - You can use Xcode to jump to the Codegen `@protocol NativeLocalStorageSpec`. You can also use Xcode to generate stubs for you.
+- When using a different spec file name, replace `NativeLocalStorageSpecJSI` with the JSI class generated from your spec name. It uses the following format
+  `return std::make_shared<facebook::react::<my_spec_file_name>SpecJSI>(params);`
 
 ## Register the Native Module in your app
 
